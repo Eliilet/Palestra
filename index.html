@@ -14,20 +14,19 @@
 /* Layout: colonna unica da telefono; home = fase dell'anno + schede, sottopagine con barra in alto */
 :root{
   --bg:rgb(246,247,251); --card:rgb(255,255,255); --ink:rgb(27,29,42); --muted:rgb(104,108,132); --line:rgb(229,231,240); --soft:rgb(240,241,247);
-  --accent:rgb(255,90,54); --sun:rgb(255,183,3);
-  --forza:rgb(239,61,99); --iper:rgb(255,128,0); --massa:rgb(118,88,255); --dima:rgb(0,178,152);
-  --on-accent:rgb(255,255,255);
+  --accent:rgb(27,29,42); --on-accent:rgb(255,255,255);
+  --forza:rgb(214,40,80); --iper:rgb(214,108,20); --massa:rgb(96,92,230); --dima:rgb(10,150,130);
   --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
   --body:"Figtree",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:rgb(17,18,26); --card:rgb(28,30,41); --ink:rgb(243,244,248); --muted:rgb(158,162,184); --line:rgb(44,47,62); --soft:rgb(36,38,52);
-  --accent:rgb(255,110,77); --sun:rgb(255,196,48);
-  --forza:rgb(255,92,128); --iper:rgb(255,152,48); --massa:rgb(150,128,255); --dima:rgb(38,212,186); color-scheme:dark}}
+  --accent:rgb(243,244,248); --on-accent:rgb(17,18,26);
+  --forza:rgb(255,110,140); --iper:rgb(245,160,80); --massa:rgb(150,146,255); --dima:rgb(60,205,180); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:rgb(17,18,26); --card:rgb(28,30,41); --ink:rgb(243,244,248); --muted:rgb(158,162,184); --line:rgb(44,47,62); --soft:rgb(36,38,52);
-  --accent:rgb(255,110,77); --sun:rgb(255,196,48);
-  --forza:rgb(255,92,128); --iper:rgb(255,152,48); --massa:rgb(150,128,255); --dima:rgb(38,212,186); color-scheme:dark}
+  --accent:rgb(243,244,248); --on-accent:rgb(17,18,26);
+  --forza:rgb(255,110,140); --iper:rgb(245,160,80); --massa:rgb(150,146,255); --dima:rgb(60,205,180); color-scheme:dark}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45}
@@ -41,14 +40,24 @@ h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;text-wrap:balance}
 .hello{font-size:.9rem;color:var(--muted);font-weight:600;text-transform:capitalize}
 .h1{font-size:2.1rem;font-weight:800;margin:2px 0 16px}
 .label{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 2px 10px}
-.phase{border-radius:24px;padding:20px;color:var(--on-accent);position:relative;overflow:hidden;cursor:pointer;border:none;width:100%;text-align:left;display:block}
-.phase::after{content:"";position:absolute;right:-40px;top:-40px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.14)}
-.phase .k{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
-.phase h2{font-size:2.3rem;font-weight:800;margin:4px 0 6px}
-.phase p{margin:0;max-width:34ch;opacity:.95}
+.phase{border-radius:20px;padding:20px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-top:5px solid var(--pc);display:block}
+.phase .k{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.phase h2{font-size:2.2rem;font-weight:800;margin:4px 0 6px;color:var(--pc)}
+.phase p{margin:0;max-width:40ch;color:var(--muted)}
 .phase .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1}
-.chip{background:rgba(255,255,255,.22);border-radius:999px;padding:5px 11px;font-size:.85rem;font-weight:600}
-.phase .more{margin-top:14px;font-weight:700;font-size:.9rem;position:relative;z-index:1}
+.chip{background:var(--soft);border-radius:999px;padding:5px 11px;font-size:.85rem;font-weight:600}
+.phase .more{margin-top:14px;font-weight:700;font-size:.9rem;color:var(--ink);background:none;border:none;padding:0;cursor:pointer}
+.phase .sub{margin:18px 0 8px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.phase .sch{background:var(--bg)}
+.schl{display:grid;gap:10px}
+.empty{margin:0;color:var(--muted);font-size:.9rem;padding:12px 2px}
+.ph2{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 16px;margin-top:10px}
+.ph2 summary{display:flex;align-items:center;gap:10px;padding:12px 0;cursor:pointer;list-style:none}
+.ph2 summary::-webkit-details-marker{display:none}
+.ph2 summary b{font-family:var(--display);font-size:1.15rem}
+.ph2 summary small{color:var(--muted);margin-left:auto;font-size:.82rem;text-align:right}
+.pdot{width:12px;height:12px;border-radius:50%;background:var(--pc);flex:none}
+.ph2[open]{padding-bottom:14px}
 .months{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-top:12px}
 .months span{height:8px;border-radius:4px;opacity:.45}
 .months span.now{opacity:1;height:12px;margin-top:-2px}
@@ -66,7 +75,7 @@ h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;text-wrap:balance}
 .st-on{background:var(--dima);color:var(--on-accent)} .st-off{background:var(--soft);color:var(--muted)}
 .sch .dates{color:var(--muted);font-size:.9rem;margin-top:4px}
 .prog{height:8px;background:var(--soft);border-radius:4px;margin-top:14px;overflow:hidden}
-.prog span{display:block;height:100%;background:linear-gradient(90deg,var(--sun),var(--accent));border-radius:4px}
+.prog span{display:block;height:100%;background:var(--ink);border-radius:4px}
 .days{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
 .dchip{font-size:.8rem;font-weight:700;padding:5px 10px;border-radius:10px;background:var(--soft);color:var(--ink)}
 .lock{font-size:.8rem;color:var(--muted);margin-top:12px}
@@ -80,17 +89,23 @@ h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;text-wrap:balance}
 .ex-h{display:flex;gap:12px;align-items:flex-start}
 .num{width:34px;height:34px;border-radius:11px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:800;font-family:var(--display);flex:none}
 .ex-h h3{font-size:1.15rem;font-weight:800;padding-top:5px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
+.cnt{font-size:.9rem;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}.cnt b{color:var(--ink)}
+.dots{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--ink);transform:scale(1.25)}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.nb{height:54px;border-radius:16px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer}
+.nb svg{width:22px;height:22px}.nb:disabled{opacity:.3;cursor:default}
 .coach{font-size:.92rem;color:var(--muted);white-space:pre-line;margin:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .f{background:var(--soft);border-radius:14px;padding:9px 10px}
 .f label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .f .row{display:flex;align-items:center;gap:6px;margin-top:2px}
 .f input{width:100%;min-width:0;border:none;background:none;font-family:var(--display);font-weight:800;font-size:1.35rem;padding:0;outline:none;font-variant-numeric:tabular-nums}
 .f .u{font-size:.8rem;color:var(--muted);font-weight:600}
 .st{width:30px;height:30px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:700;cursor:pointer;flex:none;display:grid;place-items:center}
-.f.w{grid-column:span 2;background:linear-gradient(135deg,rgba(255,183,3,.18),rgba(255,90,54,.16))}
+.f.w{grid-column:1/-1;background:var(--card);border:1.5px solid var(--line)}
 textarea{width:100%;border:1px dashed var(--line);background:none;border-radius:14px;padding:10px 12px;font-size:.92rem;resize:vertical;min-height:44px;outline:none}
-input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--muted);outline-offset:2px}
 .cardio{display:flex;align-items:center;gap:10px;font-size:.9rem}
 .cardio .chip{background:var(--soft);color:var(--ink)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:999px;font-weight:700;font-size:.9rem;opacity:0;transition:.25s;pointer-events:none;z-index:9}
@@ -105,7 +120,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
 .note{font-size:.88rem;color:var(--muted)}
 .src{font-size:.88rem;padding-left:18px}
 .src li{margin-bottom:6px}
-.src a{color:var(--accent)}
+.src a{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
 </style>
 </head>
@@ -132,7 +147,41 @@ const PH={
 const ORDER=["iper","massa","forza","dima"];
 const phaseOf=m=>ORDER.find(k=>PH[k].m.includes(m));
 
-const SCHEDE=[{id:"s2",name:"Scheda 2",start:"2026-08-31",end:"2026-10-23",days:[
+const SCHEDE=[{id:"s1",ph:"dima",name:"Inizio giugno 2026",start:"2026-06-01",end:"2026-07-26",days:[
+ {dow:1,name:"Petto + Bicipiti",ex:[
+  ["g1a","Tapis roulant",1,1,0,0,"5 minuti di riscaldamento.",1],
+  ["g1b","Push up",2,10,0,60,"Corpo libero."],
+  ["g1c","Panca piana",4,8,0,90,""],
+  ["g1d","Spinte su panca a 30° con manubri",4,8,0,90,""],
+  ["g1e","Pull over",3,12,0,60,""],
+  ["g1f","Chest press",3,10,0,60,""],
+  ["g1g","Curl con bilanciere EZ",4,8,0,60,""],
+  ["g1h","Curl a martello con manubri",4,10,0,60,""],
+  ["g1i","Leg raise",3,15,0,30,"Corpo libero."],
+  ["g1j","Sit up su panca",3,"12-15",0,30,"Corpo libero."]]},
+ {dow:3,name:"Schiena + Tricipiti",ex:[
+  ["g2a","Vogatore",1,1,0,0,"5 minuti di riscaldamento.",1],
+  ["g2b","Extrarotatori con manubri",2,15,0,30,"15 ripetizioni per lato."],
+  ["g2c","Rematore su panca a 30°",4,8,0,90,""],
+  ["g2d","Lat machine presa inversa",4,8,0,90,""],
+  ["g2e","Croci inverse su panca a 30°",3,12,0,60,""],
+  ["g2f","Upper back alla lat machine",3,10,0,60,""],
+  ["g2g","Hpx con peso",3,12,0,60,""],
+  ["g2h","Panca stretta",4,8,0,90,""],
+  ["g2i","Push down con sbarra",4,12,0,60,""]]},
+ {dow:5,name:"Gambe + Spalle",ex:[
+  ["g3a","Bici",1,1,0,0,"5 minuti di riscaldamento.",1],
+  ["g3b","Leg press",4,8,0,90,""],
+  ["g3c","Squat al multipower",4,8,0,90,""],
+  ["g3d","Leg curl",4,10,0,60,""],
+  ["g3e","Adductor machine",4,10,0,60,""],
+  ["g3f","Calf machine",3,12,0,60,""],
+  ["g3g","Lento avanti con bilanciere",4,8,0,90,""],
+  ["g3h","Shoulder press",4,10,0,60,""],
+  ["g3i","Croci inverse su panca a 30°",3,12,0,60,""],
+  ["g3j","Russian twist",3,10,0,0,"10 ripetizioni per lato."],
+  ["g3k","Star crunch",1,10,0,60,"10 ripetizioni per lato."]]}
+]},{id:"s2",ph:"iper",name:"Agosto 2026",start:"2026-08-31",end:"2026-10-23",days:[
  {dow:1,name:"Petto + Bicipiti",ex:[
   ["l0","Tapis roulant",1,1,0,0,"5 minuti · velocità 6 · riscaldamento cardiovascolare prima del lavoro sui pettorali.",1],
   ["l1","Croci con manubri",3,10,8,60,"Peso al 60% del massimale. Movimento ampio e controllato, non chiudere i gomiti in cima."],
@@ -190,24 +239,30 @@ function home(){
  const m=today.getMonth(),k=phaseOf(m),p=PH[k];
  const nk=ORDER[(ORDER.indexOf(k)+1)%4],nm=PH[nk].m[0];
  const nd=new Date(today.getFullYear()+(nm<m?1:0),nm,1),left=Math.round((nd-today)/864e5);
- const s=SCHEDE.find(x=>today>=D(x.start)&&today<=D(x.end))||SCHEDE[0];
+ const s=SCHEDE.find(x=>today>=D(x.start)&&today<=D(x.end))||SCHEDE[SCHEDE.length-1];
  const dayToday=s.days.find(d=>d.dow===today.getDay());
  let next=null;for(let i=1;i<=7&&!next;i++){const t=new Date(today);t.setDate(t.getDate()+i);const d=s.days.find(x=>x.dow===t.getDay());if(d)next=[t,d]}
  const todayCard=dayToday
-  ?'<div class="card today"><div class="dot">🏋️</div><div><b>Oggi: '+esc(dayToday.name)+'</b><small>'+dayToday.ex.length+' esercizi</small></div><button class="go" data-day="'+s.days.indexOf(dayToday)+'" data-s="'+s.id+'">Inizia</button></div>'
-  :'<div class="card today"><div class="dot">😴</div><div><b>Oggi riposo</b><small>Prossimo: '+(next?GIORNI[next[0].getDay()]+" "+next[0].getDate()+" "+MESI[next[0].getMonth()]+" · "+esc(next[1].name):"—")+'</small></div>'+(next?'<button class="go" data-day="'+s.days.indexOf(next[1])+'" data-s="'+s.id+'">Apri</button>':"")+'</div>';
- const list=SCHEDE.slice().sort((a,b)=>D(b.start)-D(a.start)).map(x=>{
+  ?'<div class="card today"><div><b>Oggi: '+esc(dayToday.name)+'</b><small>'+dayToday.ex.length+' esercizi</small></div><button class="go" data-day="'+s.days.indexOf(dayToday)+'" data-s="'+s.id+'">Inizia</button></div>'
+  :'<div class="card today"><div><b>Oggi riposo</b><small>Prossimo: '+(next?GIORNI[next[0].getDay()]+" "+next[0].getDate()+" "+MESI[next[0].getMonth()]+" · "+esc(next[1].name):"—")+'</small></div>'+(next?'<button class="go" data-day="'+s.days.indexOf(next[1])+'" data-s="'+s.id+'">Apri</button>':"")+'</div>';
+ const card=x=>{
   const [t,c]=status(x),a=D(x.start),b=D(x.end),pct=Math.max(0,Math.min(100,(today-a)/(b-a)*100)),dl=Math.round((b-today)/864e5);
   return '<button class="card sch" data-open="'+x.id+'"><div class="sch-top"><h3>'+esc(x.name)+'</h3><span class="status '+c+'">'+t+'</span></div>'+
   '<div class="dates">Creata il '+fmt(a)+' · fino al '+fmt(b)+(t==="In corso"?" · mancano "+dl+" giorni":"")+'</div>'+
   '<div class="prog"><span style="width:'+pct+'%"></span></div>'+
-  '<div class="days">'+x.days.map(d=>'<span class="dchip">'+GIORNI[d.dow].slice(0,3)+' · '+esc(d.name)+'</span>').join("")+'</div></button>'}).join("");
- app.innerHTML='<div class="hello">'+GIORNI[today.getDay()]+" "+today.getDate()+" "+MESI[m]+'</div><h1 class="h1">Ciao Elia, si allena?</h1>'+
- '<button class="phase" id="ph" style="background:linear-gradient(135deg,var('+p.c+'),var(--sun))"><div class="k">Fase consigliata ora</div><h2>'+p.n+'</h2><p>'+p.p+'</p>'+
+  '<div class="days">'+x.days.map(d=>'<span class="dchip">'+GIORNI[d.dow].slice(0,3)+' · '+esc(d.name)+'</span>').join("")+'</div></button>'};
+ const of=key=>SCHEDE.filter(x=>x.ph===key).sort((a,b)=>D(b.start)-D(a.start));
+ const list=key=>{const l=of(key);return l.length?'<div class="schl">'+l.map(card).join("")+'</div>':'<p class="empty">Nessuna scheda in questa fase.</p>'};
+ const others=ORDER.slice(ORDER.indexOf(k)+1).concat(ORDER.slice(0,ORDER.indexOf(k)));
+ app.innerHTML='<h1 class="h1">'+GIORNI[today.getDay()][0].toUpperCase()+GIORNI[today.getDay()].slice(1)+" "+today.getDate()+" "+MESI[m]+'</h1>'+
+ '<div class="label">Fase consigliata oggi</div>'+
+ '<div class="phase" style="--pc:var('+p.c+')"><div class="k">'+p.when+'</div><h2>'+p.n+'</h2><p>'+p.p+'</p>'+
  '<div class="chips"><span class="chip">'+p.reps+'</span><span class="chip">Recupero '+p.rest+'</span><span class="chip">Tra '+left+' giorni: '+PH[nk].n.toLowerCase()+'</span></div>'+
- '<div class="more">Vedi il piano dell\'anno →</div></button>'+monthsBar(m)+
+ '<div class="sub">Schede di '+p.n.toLowerCase()+' ('+of(k).length+')</div>'+list(k)+
+ '<button class="more" id="ph">Vedi il piano dell\'anno →</button></div>'+monthsBar(m)+
  '<div class="label">Oggi</div>'+todayCard+
- '<div class="label">Le tue schede</div>'+list;
+ '<div class="label">Altre fasi</div>'+
+ others.map(o=>{const q=PH[o];return '<details class="ph2" style="--pc:var('+q.c+')"><summary><span class="pdot"></span><b>'+q.n+'</b><small>'+q.when+' · '+of(o).length+(of(o).length===1?' scheda':' schede')+'</small></summary>'+list(o)+'</details>'}).join("");
  document.getElementById("ph").onclick=()=>go({v:"piano"});
  app.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>go({v:"scheda",id:b.dataset.open,day:defDay(b.dataset.open)}));
  app.querySelectorAll(".go").forEach(b=>b.onclick=()=>go({v:"scheda",id:b.dataset.s,day:+b.dataset.day}));
@@ -227,22 +282,31 @@ function piano(){
 function val(id,i,def){const s=get("ex."+id,{});return s[i]!=null?s[i]:def}
 function scheda(){
  const s=SCHEDE.find(x=>x.id===view.id)||SCHEDE[0];const di=Math.min(view.day||0,s.days.length-1),d=s.days[di];
- app.innerHTML='<div class="top"><button class="back" id="b" aria-label="Indietro">'+back+'</button><div class="t">'+esc(s.name)+' · '+fmt(D(s.start)).slice(0,-5)+' – '+fmt(D(s.end)).slice(0,-5)+'</div></div>'+
+ app.innerHTML='<div class="top"><button class="back" id="b" aria-label="Indietro">'+back+'</button><div class="t">'+esc(s.name)+'</div></div>'+
  '<div class="tabs">'+s.days.map((x,i)=>'<button class="tab" data-i="'+i+'" aria-pressed="'+(i===di)+'"><b>'+GIORNI[x.dow][0].toUpperCase()+GIORNI[x.dow].slice(1)+'</b><small>'+esc(x.name)+'</small></button>').join("")+'</div>'+
- d.ex.map((e,n)=>{const [id,name,se,re,w,r,note,type]=e;
-  const f=(k,lab,v,u,step)=>'<div class="f'+(k==="w"?" w":"")+'"><label for="'+id+k+'">'+lab+'</label><div class="row"><button class="st" data-id="'+id+'" data-k="'+k+'" data-d="-'+step+'" aria-label="Meno">−</button><input id="'+id+k+'" data-id="'+id+'" data-k="'+k+'" inputmode="decimal" value="'+esc(val(id,k,v))+'"><span class="u">'+u+'</span><button class="st" data-id="'+id+'" data-k="'+k+'" data-d="'+step+'" aria-label="Più">+</button></div></div>';
+ (()=>{const tot=d.ex.length,n=Math.max(0,Math.min(view.ex||0,tot-1));view.ex=n;const e=d.ex[n];const [id,name,se,re,w,r,note,type]=e;
+  const f=(k,lab,v,u,step)=>{const w=k==="w";return '<div class="f'+(w?" w":"")+'"><label for="'+id+k+'">'+lab+'</label><div class="row">'+(w?'<button class="st" data-id="'+id+'" data-k="'+k+'" data-d="-'+step+'" aria-label="Meno">−</button>':'')+'<input id="'+id+k+'" data-id="'+id+'" data-k="'+k+'" inputmode="decimal" value="'+esc(val(id,k,v))+'"><span class="u">'+u+'</span>'+(w?'<button class="st" data-id="'+id+'" data-k="'+k+'" data-d="'+step+'" aria-label="Più">+</button>':'')+'</div></div>'};
   const body=type===1?'<div class="cardio"><span class="chip">Riscaldamento</span></div>':
-   '<div class="grid">'+f("w","Peso",w,"kg",1)+f("s","Serie",se,"",1)+f("r",type===2?"Secondi":"Ripetizioni",re,"",1)+f("t","Recupero",r,"s",15)+'</div>';
-  return '<div class="card ex"><div class="ex-h"><div class="num">'+(n+1)+'</div><h3>'+esc(name)+'</h3></div><p class="coach">'+esc(note)+'</p>'+body+
-  '<textarea data-id="'+id+'" data-k="n" id="'+id+'n" placeholder="Note tue (si salvano da sole)">'+esc(val(id,"n",""))+'</textarea></div>'}).join("")+
- '<p class="note" style="margin-top:16px">Gli esercizi della scheda non si cambiano; pesi, serie, ripetizioni, recuperi e note sono tuoi e restano salvati su questo telefono.</p>';
+   '<div class="grid">'+f("w","Peso",w,"kg",1)+f("s","Serie",se,"",1)+f("r",type===2?"Secondi":"Rip.",re,"",1)+f("t","Recupero",r,"s",15)+'</div>';
+  return '<div class="pager"><span class="cnt">Esercizio <b>'+(n+1)+'</b> di '+tot+'</span><span class="dots">'+d.ex.map((_,i)=>'<i class="'+(i===n?"on":"")+'"></i>').join("")+'</span></div>'+
+  '<div class="card ex" id="exCard"><div class="ex-h"><div class="num">'+(n+1)+'</div><h3>'+esc(name)+'</h3></div>'+(note?'<p class="coach">'+esc(note)+'</p>':'')+body+
+  '<textarea data-id="'+id+'" data-k="n" id="'+id+'n" placeholder="Note tue (si salvano da sole)">'+esc(val(id,"n",""))+'</textarea></div>'+
+  '<div class="nav"><button class="nb" id="pv" aria-label="Esercizio precedente"'+(n===0?" disabled":"")+'>'+back+'</button><button class="nb" id="nx" aria-label="Esercizio successivo"'+(n===tot-1?" disabled":"")+' style="transform:scaleX(-1)">'+back+'</button></div>'})()+
+ '<p class="note" style="margin-top:16px">Scorri a destra o a sinistra per cambiare esercizio. Gli esercizi non si cambiano; pesi, serie, ripetizioni, recuperi e note restano salvati su questo telefono.</p>';
  document.getElementById("b").onclick=()=>go({v:"home"});
- app.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go({v:"scheda",id:s.id,day:+b.dataset.i}));
+ app.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go({v:"scheda",id:s.id,day:+b.dataset.i,ex:0}));
+ const tot=d.ex.length,mv=k=>{const n=(view.ex||0)+k;if(n<0||n>=tot)return;go({v:"scheda",id:s.id,day:di,ex:n})};
+ document.getElementById("pv").onclick=()=>mv(-1);document.getElementById("nx").onclick=()=>mv(1);
+ swipe=mv;
  const save=(id,k,v)=>{const o=get("ex."+id,{});o[k]=v;set("ex."+id,o);toast.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>toast.classList.remove("show"),900)};
  app.querySelectorAll("input[data-id],textarea[data-id]").forEach(i=>i.oninput=()=>save(i.dataset.id,i.dataset.k,i.value.replace(",",".")));
  app.querySelectorAll(".st").forEach(b=>b.onclick=()=>{const i=document.getElementById(b.dataset.id+b.dataset.k);const n=Math.max(0,Math.round(((parseFloat(i.value.replace(",","."))||0)+parseFloat(b.dataset.d))*100)/100);i.value=n;save(b.dataset.id,b.dataset.k,String(n))});
 }
-function render(){({home,piano,scheda}[view.v]||home)()}
+let swipe=null,sx=null,sy=0;
+document.addEventListener("touchstart",e=>{if(view.v!=="scheda"||/INPUT|TEXTAREA|BUTTON/.test(e.target.tagName)){sx=null;return}sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+document.addEventListener("touchend",e=>{if(sx===null||!swipe)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5)swipe(dx<0?1:-1)},{passive:true});
+document.addEventListener("keydown",e=>{if(view.v!=="scheda"||!swipe||/INPUT|TEXTAREA/.test(e.target.tagName))return;if(e.key==="ArrowRight")swipe(1);if(e.key==="ArrowLeft")swipe(-1)});
+function render(){swipe=null;({home,piano,scheda}[view.v]||home)()}
 render();if(view.y)setTimeout(()=>window.scrollTo(0,view.y),50);
 </script>
 </body>
